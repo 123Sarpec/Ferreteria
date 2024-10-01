@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ferreteria</title>
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark text-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <h4 class="text-center text-light my-4">Menú</h4>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link text-light" aria-current="page" href="#">
+                <i class="fas fa-home me-2"></i>
+                Página principal
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#clientes">
+                <i class="fas fa-users me-2"></i>
+                Clientes
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#empleados">
+                <i class="fas fa-cog me-2"></i>
+                Empleados
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#salir">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                Salir
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Contenido principal -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="container my-5">
+          <h1 class="text-center mb-4 text-primary">Lista de Clientes</h1>
+          <div class="table-responsive">
+            <nav class="navbar bg-body-tertiary">
+              <div class="container-fluid">
+                <a class="navbar-brand">Buscar Cliente</a>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
+            <table class="table table-hover table-bordered shadow-sm">
+              <thead class="table-primary">
+                
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="clientList.length === 0">
+                  <td colspan="4" class="text-center">No hay clientes disponibles</td>
+                </tr>
+                <tr *ngFor="let cliente of clientList; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.email }}</td>
+                  <td>
+                    <span [ngClass]="{'badge bg-success': cliente.status === 'Activo', 'badge bg-danger': cliente.status === 'Inactivo'}">
+                      {{ cliente.status }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="#" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true">Agregar Cliente</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
